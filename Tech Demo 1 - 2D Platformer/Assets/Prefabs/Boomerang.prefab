@@ -132,8 +132,11 @@ MonoBehaviour:
   step: 0.1
   flightTime: 2.51
   boomerangSpeed: 10.2
-  returnSpeed: 0.16
+  returnSpeed: 0.13
   isReturning: 0
+  bounceLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!50 &-2497779579812329872
 Rigidbody2D:
   serializedVersion: 4

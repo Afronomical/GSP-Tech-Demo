@@ -12,20 +12,25 @@ public class MovingPlatformScript : MonoBehaviour
 
     [SerializeField] Vector3 itemPosition;
     [SerializeField] float speed = 1;
+    private bool moving = false;
 
     [SerializeField]LayerMask ground;
 
     // Start is called before the first frame update
     void Start()
     {
-        MovePlatform();
+        
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        MovePlatform();
+        if (moving)
+        {
+            MovePlatform();
+
+        }
         //if a an object is colliding with this object. Get it's rigidbody, then add this objects velocity to its
     }
     private void MovePlatform()
@@ -38,6 +43,10 @@ public class MovingPlatformScript : MonoBehaviour
     {
         if (transform.position == nodeLocations[targetIndex])
         {
+            if ( targetIndex > nodeLocations.Count)
+            {
+                targetIndex = 0;
+            }
             targetIndex++;
         }
     }
@@ -47,8 +56,13 @@ public class MovingPlatformScript : MonoBehaviour
         if(collision.gameObject.layer != ground )
         {
             collision.transform.parent = transform;
-            itemRB.Add(collision.rigidbody);
+            
 
+        }
+        if(collision.transform.tag == "Player")
+        {
+            itemRB.Add(collision.rigidbody);
+            moving = true;
         }
         
     }
@@ -59,7 +73,11 @@ public class MovingPlatformScript : MonoBehaviour
         if (collision.gameObject.layer != ground)
         {
             collision.transform.SetParent(null);
-
+            itemRB.Remove(collision.rigidbody);
+        }
+        if(collision.transform.tag == "Player")
+        {
+            collision.transform.SetParent(null);
         }
     }
 }

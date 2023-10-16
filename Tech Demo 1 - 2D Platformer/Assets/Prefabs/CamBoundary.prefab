@@ -72,3 +72,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveCam: {fileID: 0}
+  upperLeft: {x: 0, y: 0}
+  bottomRight: {x: 0, y: 0}

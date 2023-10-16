@@ -18,6 +18,7 @@ public class BoomerangMovement : MonoBehaviour
     [SerializeField] float returnSpeed = 0.1f;
 
     [SerializeField] bool isReturning;
+    [SerializeField] LayerMask bounceLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +40,7 @@ public class BoomerangMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag != "Player")
+        if(collision.tag != "Player" )
         {
             isReturning = true;
             IInteractable interactable = collision.GetComponent<IInteractable>();
